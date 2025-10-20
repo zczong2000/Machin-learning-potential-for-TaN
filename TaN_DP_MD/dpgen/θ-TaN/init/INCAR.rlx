@@ -1,0 +1,33 @@
+SYSTEM =  TaN
+ISTART =  0            (Read existing wavefunction, if there)
+
+#INCAR-basic
+PREC      = Accurate
+ENCUT   = 600 
+NELM=500
+NELMIN = 5
+NELMDL = -5 
+
+LREAL  = .FALSE.          (Projection operators: false)
+LWAVE  = .TRUE.        (Write WAVECAR or not)
+LCHARG = .TRUE.        (Write CHGCAR or not)
+ADDGRID= .TRUE.        (Increase grid, helps GGA convergence)
+
+#Electronic Relaxation
+ISMEAR =  0                  (Gaussian smearing)
+SIGMA  =  0.05              (Smearing value in eV)
+EDIFF  =  1E-05
+EDIFFG = -1E-03
+NCORE = 4
+ 
+#Molecular Dynamics
+IBRION = 2                    (Activate MD)
+NSW=10             (Max ionic steps)
+ISYM=0                 ()
+ISIF         = 3           (NPT:-3, NVT:0, NVE:#)
+
+IVDW = 11
+IWAVPR=11
+
+KSPACING=0.5
+KGAMMA=.F.

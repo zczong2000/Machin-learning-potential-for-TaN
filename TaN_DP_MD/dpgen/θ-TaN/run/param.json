@@ -1,0 +1,102 @@
+{
+      "type_map" : ["Ta","N"],
+     "mass_map": [180.948,14.001],
+     "init_data_prefix": "../",
+     "init_data_sys": [
+                              "init/theta-TaN_128.vasp.01x01x01/02.md/sys-0064-0064/deepmd"
+                              ],
+     "sys_configs_prefix": "../",
+     "sys_configs": [
+         ["init/theta-TaN_128.vasp.01x01x01/01.scale_pert/sys-0064-0064/scale-1.000/00000*/POSCAR"],
+         ["init/theta-TaN_128.vasp.01x01x01/01.scale_pert/sys-0064-0064/scale-1.000/00005*/POSCAR"],
+     ],
+     "_comment": " that's all ",
+     "numb_models": 4,
+     "default_training_param": {
+         "model": {
+              "type_map" : ["Ta","N"],
+             "descriptor": {
+                 "type": "se_e2_a",
+                 "sel": [55,55],
+                 "rcut_smth": 0.5,
+                 "rcut": 6,
+                 "neuron": [25,50,100],
+                 "resnet_dt": false,
+                 "axis_neuron": 16,
+                 "seed": 1
+             },
+             "fitting_net": {
+                 "neuron": [240,240,240],
+                 "resnet_dt": true,
+                 "seed": 1
+             }
+         },
+         "learning_rate": {
+             "type": "exp",
+             "start_lr": 0.001,
+             "decay_steps": 5000
+         },
+         "loss": {
+             "start_pref_e": 0.02,
+             "limit_pref_e": 1,
+             "start_pref_f": 1000,
+             "limit_pref_f": 1,
+             "start_pref_v": 0.02,
+             "limit_pref_v": 1
+         },
+         "training": {
+             "stop_batch": 400000,
+             "disp_file": "lcurve.out",
+             "disp_freq": 1000,
+             "numb_test": 4,
+             "save_freq": 1000,
+             "save_ckpt": "model.ckpt",
+             "disp_training": true,
+             "time_training": true,
+             "profiling": false,
+             "profiling_file": "timeline.json",
+             "_comment": "that's all"
+         }
+     },
+     "model_devi_dt": 0.0005,
+     "model_devi_skip": 0,
+     "model_devi_f_trust_lo": 0.15,
+     "model_devi_f_trust_hi": 0.30,
+     "model_devi_e_trust_lo": 10000000000.0,
+     "model_devi_e_trust_hi": 10000000000.0,
+     "model_devi_clean_traj": true,
+     "model_devi_jobs": [
+        {"sys_idx": [0,1],"trj_freq": 10,"_idx": "00", 
+	"template": {"lmp": "./dataplus/npt.lammps"},
+           	 "rev_mat": {"lmp": {"V_NSTEPS": [2000],"V_TEMP": [50,150,300,450,500],"V_PRES": [1,10,100,1000,10000]}}},
+        {"sys_idx": [0,1],"trj_freq": 10,"_idx": "01", 
+	"template": {"lmp": "./dataplus/npt.lammps"},
+           	 "rev_mat": {"lmp": {"V_NSTEPS": [6000],"V_TEMP": [50,150,300,450,500],"V_PRES": [1,10,100,1000,10000]}}},
+        {"sys_idx": [0,1],"trj_freq": 10,"_idx": "02", 
+	"template": {"lmp": "./dataplus/npt.lammps"},
+           	 "rev_mat": {"lmp": {"V_NSTEPS": [10000],"V_TEMP": [50,150,300,450,500],"V_PRES": [1,10,100,1000,10000]}}},
+        {"sys_idx": [0,1],"trj_freq": 10,"_idx": "03", 
+	"template": {"lmp": "./dataplus/npt.lammps"},
+           	 "rev_mat": {"lmp": {"V_NSTEPS": [20000],"V_TEMP": [50,150,300,450,500],"V_PRES": [1,10,100,1000,10000]}}},
+        {"sys_idx": [0,1],"trj_freq": 50,"_idx": "04", 
+	"template": {"lmp": "./dataplus/npt.lammps"},
+           	 "rev_mat": {"lmp": {"V_NSTEPS": [40000],"V_TEMP": [50,150,300,450,500],"V_PRES": [1,10,100,1000,10000]}}},
+        {"sys_idx": [0,1],"trj_freq": 50,"_idx": "05", 
+	"template": {"lmp": "./dataplus/nve.lammps"},
+           	 "rev_mat": {"lmp": {"V_NSTEPS": [40000],"V_TEMP": [50,150,300,450,500]}}},
+        {"sys_idx": [0,1],"trj_freq": 50,"_idx": "06", 
+	"template": {"lmp": "./dataplus/nvt.lammps"},
+           	 "rev_mat": {"lmp": {"V_NSTEPS": [40000],"V_TEMP": [50,150,300,450,500]}}},
+        {"sys_idx": [0,1],"trj_freq": 50,"_idx": "07", 
+	"template": {"lmp": "./dataplus/nvt.lammps"},
+           	 "rev_mat": {"lmp": {"V_NSTEPS": [40000],"V_TEMP": [50,150,300,450,500]}}}
+     ],
+     "fp_style": "vasp",
+     "shuffle_poscar": false,
+     "fp_task_max": 2000,
+     "fp_task_min": 5,
+     "ratio_failed": 0.05,
+     "fp_pp_path": "./",
+     "fp_pp_files": ["POTCAR_Ta","POTCAR_N"],
+     "fp_incar": "./INCAR_TaN"
+}
