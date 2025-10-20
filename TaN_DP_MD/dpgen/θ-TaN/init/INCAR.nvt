@@ -1,0 +1,35 @@
+SYSTEM =  TaN
+
+#INCAR-basic
+PREC      = Accurate
+ENCUT   = 600 
+NELMIN = 5
+LREAL  = .FALSE.          (Projection operators: false)
+LWAVE  = .TRUE.        (Write WAVECAR or not)
+LCHARG = .TRUE.        (Write CHGCAR or not)
+ADDGRID= .TRUE.        (Increase grid, helps GGA convergence)
+
+#Electronic Relaxation
+ISMEAR =  0                  (Gaussian smearing)
+SIGMA  =  0.05              (Smearing value in eV)
+EDIFF  =  1E-06
+
+NCORE = 6   
+ 
+#Molecular Dynamics
+IBRION = 0                    (Activate MD)
+NSW=5                 (Max ionic steps)
+POTIM = 0.5                    (Timestep in fs)
+ISYM=0                 ()
+
+SMASS= 0                (NPT:-3, NVT:0, NVE:-3)
+MDALGO       = 2     (NPT:3, NVT:1 2 3 13, NVE:1)
+ISIF         = 2           (NPT:-3, NVT:0, NVE:#)
+
+TEBEG = 300         (Start temperature)
+TEEND = 300   (End temperature) 
+
+IWAVPR=11
+
+KSPACING=0.5
+KGAMMA=.F.
